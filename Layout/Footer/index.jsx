@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 import { BackTop } from "antd";
 import { UpCircleOutlined } from "@ant-design/icons";
-import { HorizontalLine } from "../../Components/hr";
+import { MainBackgroundColor } from "../../styles/theme";
+import { SParagraph } from "../../Typography";
 
 const FooterContainer = styled.div`
   display: flex;
@@ -12,18 +13,26 @@ const FooterContainer = styled.div`
   align-items: center;
   padding: 10px;
   height: auto;
+  background-color: ${MainBackgroundColor};
 `;
 
-export default function SFooter() {
+function SFooter(props) {
   return (
     <>
       <FooterContainer>
-        <HorizontalLine />
-        <p>Copyright © {new Date().getFullYear()}</p>
+        {/* <HorizontalLine /> */}
+
+        <SParagraph small>Copyright © {new Date().getFullYear()}</SParagraph>
         <BackTop>
-          <UpCircleOutlined style={{ fontSize: "30px" }} />
+          {props.theme.mode === "dark" ? (
+            <UpCircleOutlined style={{ fontSize: "30px", color: "#fff" }} />
+          ) : (
+            <UpCircleOutlined style={{ fontSize: "30px" }} />
+          )}
         </BackTop>
       </FooterContainer>
     </>
   );
 }
+
+export default withTheme(SFooter);

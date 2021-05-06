@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 import Link from "next/link";
 import { MenuUnfoldOutlined } from "@ant-design/icons";
-import { Menu, Drawer, Button } from "antd";
+import { Drawer, Button } from "antd";
 import { HorizontalLine } from "../../Components/hr";
+import { useTheme } from "../../styles/ThemeContext";
+import { CloudFilled } from "@ant-design/icons";
+import { BoxShadow, DrawerColor, textColor } from "../../styles/theme";
 
 const HeaderContainer = styled.div`
   backdrop-filter: blur(5px);
@@ -17,9 +20,9 @@ const HeaderContainer = styled.div`
   width: 100%;
   align-items: center;
   height: 60px;
-  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); */
+  box-shadow: ${BoxShadow};
   a {
-    color: #000;
+    color: ${textColor};
     padding: 15px;
     @media (max-width: 550px) {
       padding: 5px;
@@ -27,7 +30,6 @@ const HeaderContainer = styled.div`
     }
   }
 `;
-
 const RightContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -47,18 +49,33 @@ const LeftContainer = styled.div`
   align-items: center;
   float: left;
 `;
-
 const StyledDrawer = styled(Drawer)`
   backdrop-filter: blur(7px);
   background-color: rgba(178, 60, 253, 0);
+  .ant-drawer-body {
+    background-color: ${DrawerColor};
+  }
 `;
-
-const StyledMenuItem = styled(Menu.Item)`
+const DrawerContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  padding: 10px;
+  width: 100%;
+`;
+const DrawerLinkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 5px;
+  a {
+    color: ${textColor};
+    padding: 15px;
+  }
 `;
 
-export default function SHeader() {
+function SHeader(props) {
   const [state, setState] = useState(false);
 
   const showDrawer = () => {
@@ -68,12 +85,24 @@ export default function SHeader() {
   const onClose = () => {
     setState(false);
   };
+
+  const themeToggle = useTheme();
+  const toggle = () => {
+    themeToggle.toggle();
+  };
+
   return (
     <>
       <HeaderContainer>
         <LeftContainer>
           <Button
-            icon={<MenuUnfoldOutlined />}
+            icon={
+              props.theme.mode === "dark" ? (
+                <MenuUnfoldOutlined style={{ color: "#fff" }} />
+              ) : (
+                <MenuUnfoldOutlined />
+              )
+            }
             type="text"
             onClick={showDrawer}
           ></Button>
@@ -84,47 +113,53 @@ export default function SHeader() {
           <Link href="/About">About</Link>
           <Link href="/Features">Features</Link>
           <Link href="/ContactUs">ContactUs</Link>
+          <Button
+            type="text"
+            icon={
+              props.theme.mode === "dark" ? (
+                <CloudFilled style={{ color: "#fff" }} />
+              ) : (
+                "☼"
+              )
+            }
+            onClick={toggle}
+          ></Button>
         </RightContainer>
       </HeaderContainer>
 
       {/* Drawer */}
 
       <StyledDrawer
-        // title="lol"
         placement="left"
         closable={false}
         onClose={onClose}
         visible={state}
       >
-        <Menu>
-          <StyledMenuItem key="1">
-            <Link href="/">
-              <a onClick={() => setState(false)}>lol</a>
-            </Link>
-          </StyledMenuItem>
-          <HorizontalLine />
-          <StyledMenuItem key="1">
+        <DrawerContainer>
+          <DrawerLinkContainer>
             <Link href="/">
               <a onClick={() => setState(false)}>Home</a>
             </Link>
-          </StyledMenuItem>
-          <StyledMenuItem key="2">
+          </DrawerLinkContainer>
+          <DrawerLinkContainer>
             <Link href="/About">
               <a onClick={() => setState(false)}>About</a>
             </Link>
-          </StyledMenuItem>
-          <StyledMenuItem key="3">
+          </DrawerLinkContainer>
+          <DrawerLinkContainer>
             <Link href="/Features">
               <a onClick={() => setState(false)}>Features</a>
             </Link>
-          </StyledMenuItem>
-          <StyledMenuItem key="4">
+          </DrawerLinkContainer>
+          <DrawerLinkContainer>
             <Link href="/ContactUs">
               <a onClick={() => setState(false)}>ContactUs</a>
             </Link>
-          </StyledMenuItem>
-        </Menu>
+          </DrawerLinkContainer>
+        </DrawerContainer>
       </StyledDrawer>
     </>
   );
 }
+
+export default withTheme(SHeader);
