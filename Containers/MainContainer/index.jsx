@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MainBackgroundColor } from "../../styles/theme";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -8,4 +9,5 @@ export const MainContainer = styled.div`
   width: 100%;
   height: auto;
   padding: 70px 0px 10px 0px;
+  background-color: ${MainBackgroundColor};
 `;

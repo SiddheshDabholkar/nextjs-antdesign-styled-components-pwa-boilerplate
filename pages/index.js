@@ -1,6 +1,12 @@
 import { MainContainer } from "../Containers/MainContainer";
 import { RestContainer } from "../Containers/RestContainer";
 import Head from "next/head";
+import {
+  SHeader,
+  SParagraph,
+  SWebsiteName,
+  SWebsiteTagLine,
+} from "../Typography";
 
 export default function Home() {
   return (
@@ -10,41 +16,12 @@ export default function Home() {
         <meta name="keywords" content="Home" />
       </Head>
       <MainContainer>
-        <h1>Home</h1>
+        <SWebsiteName bold>Home</SWebsiteName>
+        <SWebsiteTagLine bold>lol</SWebsiteTagLine>
         <RestContainer auto>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
-          <p>Home</p>
+          <SHeader bold>Home</SHeader>
+          <SParagraph>Home</SParagraph>
+          <SParagraph small>Home</SParagraph>
         </RestContainer>
       </MainContainer>
     </>
