@@ -58,16 +58,16 @@ const StyledDrawer = styled(Drawer)`
 `;
 const DrawerContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ row }) => (row ? "row" : "column")};
   align-items: center;
   justify-content: center;
-  padding: 10px;
   width: 100%;
 `;
 const DrawerLinkContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: ${({ column }) => (column ? "column" : "row")};
+  width: ${({ half }) => (half ? "50%" : "100%")};
+  justify-content: ${({ end }) => (end ? "flex-end" : "")};
   padding: 5px;
   a {
     color: ${textColor};
@@ -136,6 +136,25 @@ function SHeader(props) {
         visible={state}
       >
         <DrawerContainer>
+          <DrawerContainer row>
+            <DrawerLinkContainer half>
+              <Link href="/">logo</Link>
+            </DrawerLinkContainer>
+            <DrawerLinkContainer half end>
+              <Button
+                type="text"
+                icon={
+                  props.theme.mode === "dark" ? (
+                    <CloudFilled style={{ color: "#fff" }} />
+                  ) : (
+                    "☼"
+                  )
+                }
+                onClick={toggle}
+              ></Button>
+            </DrawerLinkContainer>
+          </DrawerContainer>
+          <HorizontalLine full />
           <DrawerLinkContainer>
             <Link href="/">
               <a onClick={() => setState(false)}>Home</a>
