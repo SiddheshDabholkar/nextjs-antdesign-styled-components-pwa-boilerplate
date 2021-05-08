@@ -1,5 +1,5 @@
 # nextjs-antdesign-styled-components-pwa
-This PWA ( Progressive web app ) Boilerplate is made using nextjs ( react js framework ),ant design ( React UI library) ,Styled-components ( CSS in JS library)
+This PWA ( Progressive web app ) Boilerplate is made using nextjs ( react js framework ),ant design ( React UI library) ,Styled-components ( CSS in JS library) and 
 nightmode support using styled-theming
 
 ## How to use
