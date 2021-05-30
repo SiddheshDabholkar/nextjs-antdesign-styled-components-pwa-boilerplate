@@ -22,7 +22,7 @@ function SFooter(props) {
       <FooterContainer>
         {/* <HorizontalLine /> */}
 
-        <SParagraph small>Copyright © {new Date().getFullYear()}</SParagraph>
+        <SParagraph>Copyright © {new Date().getFullYear()}</SParagraph>
         <BackTop>
           {props.theme.mode === "dark" ? (
             <UpCircleOutlined style={{ fontSize: "30px", color: "#fff" }} />

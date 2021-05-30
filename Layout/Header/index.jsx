@@ -10,7 +10,7 @@ import { BoxShadow, DrawerColor, textColor } from "../../styles/theme";
 
 const HeaderContainer = styled.div`
   backdrop-filter: blur(5px);
-  background-color: rgba(178, 60, 253, 0);
+  background-color: transparent;
   position: fixed;
   z-index: 1;
   display: flex;
@@ -19,7 +19,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  height: 60px;
+  height: 80px;
   box-shadow: ${BoxShadow};
   a {
     color: ${textColor};
@@ -27,6 +27,10 @@ const HeaderContainer = styled.div`
     @media (max-width: 550px) {
       padding: 5px;
       font-size: 12px;
+    }
+    @media (min-width: 650px) {
+      padding: 10px;
+      font-size: 18px;
     }
   }
 `;
@@ -51,7 +55,7 @@ const LeftContainer = styled.div`
 `;
 const StyledDrawer = styled(Drawer)`
   backdrop-filter: blur(7px);
-  background-color: rgba(178, 60, 253, 0);
+  background-color: transparent;
   .ant-drawer-body {
     background-color: ${DrawerColor};
   }
@@ -72,6 +76,12 @@ const DrawerLinkContainer = styled.div`
   a {
     color: ${textColor};
     padding: 15px;
+    @media (max-width: 550px) {
+      font-size: 12px;
+    }
+    @media (min-width: 650px) {
+      font-size: 18px;
+    }
   }
 `;
 

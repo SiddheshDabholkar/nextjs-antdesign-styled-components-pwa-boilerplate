@@ -7,7 +7,7 @@ export const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: auto;
+  height: ${({ fullvh }) => (fullvh ? "100vh" : "auto")};
   padding: 70px 0px 10px 0px;
   background-color: ${MainBackgroundColor};
 `;
